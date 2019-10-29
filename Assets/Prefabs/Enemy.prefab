@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8197123743588440088}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8197123743588440090
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -124,4 +124,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 6794428928859356146, guid: afec4662865f9c94ca7aabfdc59aac7f, type: 3}
-  Player: {fileID: 7264406510326084477, guid: 5c4ca6481af92514e8d5a79e01cfdd1c, type: 3}
+  baseSpeed: 1
