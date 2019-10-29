@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public Planet planet;
 
+    public GameObject playerReference;
+
     public GameObject enemyPrefab;
 
     GameObject enemyGroup;
@@ -48,6 +50,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemyInOrbit(){
         GameObject newEnemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
         newEnemy.transform.Rotate(this.transform.forward, 180);
+        newEnemy.GetComponent<EnemyController>().SetPlayerReference(playerReference);
         newEnemy.transform.parent = enemyGroup.transform;
     }
 }

@@ -124,3 +124,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 6794428928859356146, guid: afec4662865f9c94ca7aabfdc59aac7f, type: 3}
+  Player: {fileID: 7264406510326084477, guid: 5c4ca6481af92514e8d5a79e01cfdd1c, type: 3}
