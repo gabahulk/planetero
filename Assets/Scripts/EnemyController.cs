@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     GameObject playerReference;
 
+    [Range(0,10)] public float baseSpeed = 1;
+
     bool isGrounded = false;
     float distanceToGround = 100;
 
@@ -48,6 +50,8 @@ public class EnemyController : MonoBehaviour
     }
 
     void UpdateGroundedMovement(){
+        float step =  baseSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
     }
 
     // Update is called once per frame
