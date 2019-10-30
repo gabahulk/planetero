@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
             distanceToGround = hit.distance;
             groundNormal = hit.normal;
 
-            if (distanceToGround <= 1f){
+            if (distanceToGround <= 0.2f){
                 isGrounded = true;
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }else{
@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour
 
         if (isDebug) {
             Debug.DrawRay(transform.position, vectorToPlanet, Color.black);
+            Debug.Log(hit.distance);
         }        
     }
 
