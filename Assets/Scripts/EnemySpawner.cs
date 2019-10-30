@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResetSpawnerPosition();
+        //ResetSpawnerPosition();
         CreateEnemyGroupOnEditor();
     }
 
@@ -41,15 +41,13 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
-        if (secondsFromlastInterval == 0) SpawnEnemyInOrbit();
-        secondsFromlastInterval++;
-        // if (secondsFromlastInterval >= secondsSpawnInterval){
-        //     SpawnEnemyInOrbit();
-        //     secondsFromlastInterval = 0;
-        //     ResetSpawnerPosition();
-        // }else{
-        //     secondsFromlastInterval += Time.deltaTime;
-        // }
+        if (secondsFromlastInterval >= secondsSpawnInterval){
+            SpawnEnemyInOrbit();
+            secondsFromlastInterval = 0;
+            ResetSpawnerPosition();
+        }else{
+            secondsFromlastInterval += Time.deltaTime;
+        }
     }
 
     private void SpawnEnemyInOrbit(){
