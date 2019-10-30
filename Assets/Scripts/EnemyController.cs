@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
 
     Vector3 groundNormal = Vector3.zero;
 
+    bool isDebug = false;
+
     // Start is called before the first frame update
 
     public void SetPlayerReference(GameObject playerReference){
@@ -33,9 +35,15 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    public void SetDebugMode(bool isDebug){
+        this.isDebug = isDebug;
+    }
+
     void ProcessGroundToEnemyInfo(){
+        Vector3 vectorToPlanet = planet.transform.position-transform.position;
+
         RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(transform.position, transform.position-planet.transform.position, out hit, 15))
+        if (Physics.Raycast(transform.position, vectorToPlanet, out hit, 15))
         {
             distanceToGround = hit.distance;
             groundNormal = hit.normal;
@@ -47,6 +55,10 @@ public class EnemyController : MonoBehaviour
                 isGrounded = false;
             }                        
         }
+
+        if (isDebug) {
+            Debug.DrawRay(transform.position, vectorToPlanet, Color.black);
+        }        
     }
 
     void UpdateGroundedMovement(){

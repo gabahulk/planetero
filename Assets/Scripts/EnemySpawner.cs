@@ -10,6 +10,8 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject enemyPrefab;
 
+    public bool isDebug = false;
+
     GameObject enemyGroup;
 
     [Range(0,20)] public float secondsSpawnInterval = 2;
@@ -31,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ResetSpawnerPosition();
+        ResetSpawnerPosition();
         CreateEnemyGroupOnEditor();
     }
 
@@ -51,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
         newEnemy.transform.Rotate(this.transform.forward, 180);
         newEnemy.GetComponent<EnemyController>().SetPlayerReference(playerReference);
+        newEnemy.GetComponent<EnemyController>().SetDebugMode(isDebug);
         newEnemy.transform.parent = enemyGroup.transform;
     }
 }
