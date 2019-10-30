@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
         if (dist < 1) dist = 1;
 
         Vector3 gravDirection = (transform.position - planet.transform.position).normalized;
-        Vector3 gravPull = gravDirection * (-planet.gravity/dist);
+        Vector3 gravPull = gravDirection * (-planet.gravity/(dist*2));
 
         GetComponent<Rigidbody>().AddForce(gravPull);
 
@@ -51,6 +51,7 @@ public class EnemyController : MonoBehaviour
             if (distanceToGround <= 0.2f){
                 isGrounded = true;
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                Destroy(this.GetComponent<ParticleSystem>());
             }else{
                 isGrounded = false;
             }                        
