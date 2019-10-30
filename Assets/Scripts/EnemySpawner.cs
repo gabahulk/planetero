@@ -40,13 +40,16 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (secondsFromlastInterval >= secondsSpawnInterval){
-            SpawnEnemyInOrbit();
-            secondsFromlastInterval = 0;
-            ResetSpawnerPosition();
-        }else{
-            secondsFromlastInterval += Time.deltaTime;
-        }
+
+        if (secondsFromlastInterval == 0) SpawnEnemyInOrbit();
+        secondsFromlastInterval++;
+        // if (secondsFromlastInterval >= secondsSpawnInterval){
+        //     SpawnEnemyInOrbit();
+        //     secondsFromlastInterval = 0;
+        //     ResetSpawnerPosition();
+        // }else{
+        //     secondsFromlastInterval += Time.deltaTime;
+        // }
     }
 
     private void SpawnEnemyInOrbit(){
