@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     GameObject playerReference;
 
+    public GameObject smokeImpactReference;
+
     [Range(0,10)] public float baseSpeed = 1;
 
     bool isGrounded = false;
@@ -39,6 +41,10 @@ public class EnemyController : MonoBehaviour
         this.isDebug = isDebug;
     }
 
+    void CreateSmokeImpactObject(){
+        GameObject newEnemy = Instantiate(smokeImpactReference, this.transform.position, Quaternion.identity);
+    }
+
     void ProcessGroundToEnemyInfo(){
         Vector3 vectorToPlanet = planet.transform.position-transform.position;
 
@@ -52,6 +58,7 @@ public class EnemyController : MonoBehaviour
                 isGrounded = true;
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 Destroy(this.GetComponent<ParticleSystem>());
+                CreateSmokeImpactObject();
             }else{
                 isGrounded = false;
             }                        
@@ -71,10 +78,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessGroundToEnemyInfo();
-
+        
         if (!isGrounded){
             UpdateOrbitMovement();
+            ProcessGroundToEnemyInfo();
         }else{
             UpdateGroundedMovement();
         }
