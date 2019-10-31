@@ -51,8 +51,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void SpawnEnemyInOrbit(){
-        GameObject newEnemy = Instantiate(enemyPrefab, this.transform.position, Quaternion.identity);
-        newEnemy.transform.Rotate(this.transform.forward, 180);
+        GameObject newEnemy = Instantiate(enemyPrefab, this.transform.position, this.transform.rotation);
         newEnemy.GetComponent<EnemyController>().SetPlayerReference(playerReference);
         newEnemy.GetComponent<EnemyController>().SetDebugMode(isDebug);
         newEnemy.transform.parent = enemyGroup.transform;
