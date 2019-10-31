@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemySpawner : MonoBehaviour
+{
+    public Planet planet;
+
+    public GameObject playerReference;
+
+    public GameObject enemyPrefab;
+
+    public bool isDebug = false;
+
+    GameObject enemyGroup;
+
+    [Range(0,20)] public float secondsSpawnInterval = 2;
+    float secondsFromlastInterval = 0;
+
+    private void ResetSpawnerPosition(){
+        transform.RotateAround(
+            planet.transform.position, 
+            new Vector3(Random.Range(0,10),Random.Range(0,10),Random.Range(0,10)), 
+            Random.Range(0,360)
+        );
+    }
+
+    private void CreateEnemyGroupOnEditor(){
+        enemyGroup = new GameObject();
+        enemyGroup.name = "Enemy Group";
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //ResetSpawnerPosition();
+        CreateEnemyGroupOnEditor();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (secondsFromlastInterval >= secondsSpawnInterval){
+            SpawnEnemyInOrbit();
+            secondsFromlastInterval = 0;
+            ResetSpawnerPosition();
+        }else{
+            secondsFromlastInterval += Time.deltaTime;
+        }
+    }
+
+    private void SpawnEnemyInOrbit(){
+        GameObject newEnemy = Instantiate(enemyPrefab, this.transform.position, this.transform.rotation);
+        newEnemy.GetComponent<EnemyController>().SetPlayerReference(playerReference);
+        newEnemy.GetComponent<EnemyController>().SetDebugMode(isDebug);
+        newEnemy.transform.parent = enemyGroup.transform;
+    }
+}
